@@ -426,7 +426,7 @@ func generateConfig(k8s config.KubernetesConfig) (string, error) {
 		NoTaintMaster     bool
 	}{
 		CertDir:           util.DefaultCertPath,
-		ServiceCIDR:       util.DefaultServiceCIDR,
+		ServiceCIDR:       k8s.ServiceCIDR,
 		AdvertiseAddress:  k8s.NodeIP,
 		APIServerPort:     util.APIServerPort,
 		KubernetesVersion: k8s.KubernetesVersion,
