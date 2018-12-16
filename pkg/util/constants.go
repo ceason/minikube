@@ -29,7 +29,7 @@ const (
 	DefaultCertPath          = DefaultMinikubeDirectory + "/certs/"
 	DefaultKubeConfigPath    = DefaultMinikubeDirectory + "/kubeconfig"
 	DefaultDNSDomain         = "cluster.local"
-	DefaultServiceCIDR       = "10.96.0.0/12"
+	DefaultServiceCIDR       = "10.96.0.0/24"
 )
 
 var DefaultAdmissionControllers = []string{
