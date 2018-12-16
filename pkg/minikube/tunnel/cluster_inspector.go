@@ -18,6 +18,7 @@ package tunnel
 
 import (
 	"fmt"
+	"k8s.io/kubernetes/cmd/kubeadm/app/constants"
 	"net"
 
 	"github.com/docker/machine/libmachine"
@@ -93,9 +94,14 @@ func getRoute(host *host.Host, clusterConfig config.Config) (*Route, error) {
 	if ip == nil {
 		return nil, fmt.Errorf("invalid IP for host %s", hostDriverIP)
 	}
-
+	dnsIp, err := constants.GetDNSIP(ipNet.String())
+	if err != nil {
+		return nil, err
+	}
 	return &Route{
-		Gateway:  ip,
-		DestCIDR: ipNet,
+		Gateway:       ip,
+		DestCIDR:      ipNet,
+		ClusterDomain: clusterConfig.KubernetesConfig.DNSDomain,
+		ClusterDNSIP:  dnsIp,
 	}, nil
 }
